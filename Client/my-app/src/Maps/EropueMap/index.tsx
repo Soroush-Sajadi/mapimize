@@ -1,5 +1,7 @@
 import React from "react";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
+import "./EuropeMap.css";
+// import { countriesFlagCode } from "../../Data/countriesFlagCode";
 
 const geoUrl =
   "https://raw.githubusercontent.com/PublicaMundi/MappingAPI/master/data/geojson/countries.geojson";
@@ -56,52 +58,67 @@ const europeCountryData = [
 
 export default function EuropeMap() {
   return (
-    <ComposableMap
-      projection="geoAzimuthalEqualArea"
-      projectionConfig={{
-        rotate: [-10.0, -52.0, 0],
-        scale: 800,
-      }}
-      style={{ width: "50%", height: "auto" }}
-    >
-      <Geographies geography={geoUrl}>
-        {({ geographies }: { geographies: any[] }) =>
-          geographies
-            .filter((geo) =>
-              europeCountryData.some((country) => country.code === geo.id)
-            )
-            .map((geo) => {
-              const country = europeCountryData.find(
-                (country) => country.code === geo.id
-              );
-              return (
-                <Geography
-                  key={geo.rsmKey}
-                  geography={geo}
-                  style={{
-                    default: {
-                      fill: "#b5bdb7",
-                      stroke: "#000",
-                      strokeWidth: 0.5,
-                    },
-                    hover: {
-                      fill: "#F53",
-                      stroke: "#000",
-                      strokeWidth: 0.7,
-                      outline: "none",
-                    },
-                    pressed: {
-                      fill: "#E42",
-                      stroke: "#000",
-                      strokeWidth: 0.7,
-                      outline: "none",
-                    },
-                  }}
-                />
-              );
-            })
-        }
-      </Geographies>
-    </ComposableMap>
+    <div className="EuropeMap">
+      <ComposableMap
+        projection="geoAzimuthalEqualArea"
+        projectionConfig={{
+          rotate: [-10.0, -52.0, 0],
+          scale: 800,
+        }}
+      >
+        <Geographies geography={geoUrl}>
+          {({ geographies }: { geographies: any[] }) =>
+            geographies
+              .filter((geo) =>
+                europeCountryData.some((country) => country.code === geo.id)
+              )
+              .map((geo) => {
+                const country = europeCountryData.find(
+                  (country) => country.code === geo.id
+                );
+                return (
+                  <g key={geo.rsmKey}>
+                    <Geography
+                      geography={geo}
+                      style={{
+                        default: {
+                          fill: "#b5bdb7",
+                          stroke: "#000",
+                          strokeWidth: 0.5,
+                        },
+                        hover: {
+                          fill: "#F53",
+                          stroke: "#000",
+                          strokeWidth: 0.7,
+                          outline: "none",
+                        },
+                        pressed: {
+                          fill: "#E42",
+                          stroke: "#000",
+                          strokeWidth: 0.7,
+                          outline: "none",
+                        },
+                      }}
+                    />
+                    {/* {country && (
+                      <image
+                        href={`https://flagcdn.com/w40/${
+                          countriesFlagCode[
+                            country.code as keyof typeof countriesFlagCode
+                          ]
+                        }.png`}
+                        x={geo.centroid - 10}
+                        y={geo.centroid - 10}
+                        width={20}
+                        height={15}
+                      />
+                    )} */}
+                  </g>
+                );
+              })
+          }
+        </Geographies>
+      </ComposableMap>
+    </div>
   );
 }
