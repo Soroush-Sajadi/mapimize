@@ -12,6 +12,7 @@ import NorthAmericaMap from "./Maps/NorthAmerica";
 import SouthAmericaMap from "./Maps/SouthAmerica";
 import AustraliaMap from "./Maps/AustraliaMap";
 import { EuropeView } from "./Views/EuropeView";
+import { AfricaView } from "./Views/AfricaView";
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
           <Route path="/" element={<Navigate to="/europe" />} />
           <Route path="/europe" element={<EuropeView />} />
           <Route path="/asia" element={<AsiaMap />} />
-          <Route path="/africa" element={<AfricaMap />} />
+          <Route path="/africa" element={<AfricaView />} />
           <Route path="/north-america" element={<NorthAmericaMap />} />
           <Route path="/south-america" element={<SouthAmericaMap />} />
           <Route path="/australia" element={<AustraliaMap />} />
