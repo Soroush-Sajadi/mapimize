@@ -11,6 +11,7 @@ import AfricaMap from "./Maps/AfricaMap";
 import NorthAmericaMap from "./Maps/NorthAmerica";
 import SouthAmericaMap from "./Maps/SouthAmerica";
 import AustraliaMap from "./Maps/AustraliaMap";
+import { EuropeView } from "./Views/EuropeView";
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<Navigate to="/europe" />} />
-          <Route path="/europe" element={<EuropeMap />} />
+          <Route path="/europe" element={<EuropeView />} />
           <Route path="/asia" element={<AsiaMap />} />
           <Route path="/africa" element={<AfricaMap />} />
           <Route path="/north-america" element={<NorthAmericaMap />} />
